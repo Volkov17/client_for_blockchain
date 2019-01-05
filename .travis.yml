@@ -1,0 +1,35 @@
+os: linux
+sudo: false
+language: cpp
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - libstdc++-7-dev
+    - g++-7
+    update: true
+
+env: CC_EVAL=gcc-7 CXX_EVAL=g++-7
+before_install:
+- export CXX=$CXX_EVAL
+- export CC=$CC_EVAL
+- pip install --user cpplint
+
+before_script:
+  #Linux
+    #SFML
+    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then wget http://www.sfml-dev.org/files/SFML-2.3.2-linux-gcc-64-bit.tar.gz; fi
+    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then tar xf SFML-2.3.2-linux-gcc-64-bit.tar.gz; fi
+    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo cp -r SFML-2.3.2/lib/* /usr/local/lib/.; fi
+    - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo cp -r SFML-2.3.2/include/* /usr/local/include/.; fi
+
+
+script: 
+  - mkdir build
+  - cd build
+  - cmake .. && make
+
+notifications:
+  email: false
