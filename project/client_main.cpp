@@ -18,7 +18,7 @@ const char *  writing_to_file (double a, std::string &b , std::string &c){
     const char * filename = "transaction_test.txt";
     std::ofstream out (filename);
     if( out.is_open()){
-        out << a << " " << b << " " << c << " " 
+        out << a << " " << b << " " << c << " " ;
     }
     else {
         std::cerr << "File cannot open"<< std::endl;
