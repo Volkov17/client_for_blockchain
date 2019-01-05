@@ -13,4 +13,4 @@ string(APPEND CMAKE_CXX_FLAGS " -Wall -Wextra -Wno-unused-command-line-argument 
 # enum your files and delete this comment
 
 
-add_executable(client_for_blockchain client_main.cpp)
+add_executable(client_for_blockchain project/client_main.cpp)
